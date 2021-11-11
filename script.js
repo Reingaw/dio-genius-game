@@ -80,27 +80,32 @@ let nextLevel = ()=> {
     score++;
     level++;
 
-    scoreDisplay.innerHTML = `${score}`;
-    levelDisplay.innerHTML = `${level}`;
+    updateDisplay();
 
-    setTimeout(()=> shuffleOrder(), 250);
-    
+    shuffleOrder()
 }
 
-let gameOver = ()=> {
-    alert(`Pontuação: ${score}\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo.`);
-    order = [];
-    clickedOrder = [];
-
-    playGame();
+let updateDisplay = ()=> {
+    scoreDisplay.innerHTML = `${score}`;
+    levelDisplay.innerHTML = `${level}`;
 }
 
 let playGame = ()=> {
     alert('Bem vindo ao Genesis! Iniciando novo jogo!');
     score = -1;
     level = 0;
-
+    
+    updateDisplay();
+    
     nextLevel();
+}
+
+let gameOver = ()=> {
+    order = [];
+    clickedOrder = [];
+    alert(`Pontuação: ${score}\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo.`);
+
+    playGame();
 }
 
 green.onclick = ()=> click(0);
